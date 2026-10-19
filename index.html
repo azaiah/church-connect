@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#101C2E" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>ChurchConnect by DataIsData | Church Website, CRM and AI-Powered Operations Platform</title>
+    <meta
+      name="description"
+      content="ChurchConnect brings a modern church website, member portal, membership CRM, giving, ministry operations, facilities and an AI administrative workforce into one connected platform. Built by DataIsData."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- TODO: confirm with Tony: switch SITE_URL to the custom domain once connected in Netlify (also robots.txt, sitemap.xml, src/config/site.ts). -->
+    <link rel="canonical" href="https://churchconnect-dataisdata.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ChurchConnect by DataIsData" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="ChurchConnect | Modernizing the business of running a church" />
+    <meta
+      property="og:description"
+      content="One connected platform: church website, member portal, membership CRM, giving and finance, ministry operations, facilities, communications and AI agents that prepare the work for your team to approve."
+    />
+    <meta property="og:url" content="https://churchconnect-dataisdata.netlify.app/" />
+    <meta property="og:image" content="https://churchconnect-dataisdata.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ChurchConnect by DataIsData: Modernizing the business of running a church." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ChurchConnect | Modernizing the business of running a church" />
+    <meta name="twitter:description" content="Church website, CRM, finance, ministries, facilities and AI agents in one connected environment." />
+    <meta name="twitter:image" content="https://churchconnect-dataisdata.netlify.app/og-image.png" />
+
+    <!-- Hidden static forms so Netlify Forms detects them at build time -->
+    <form name="pilot-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="church" />
+      <input type="text" name="role" />
+      <input type="text" name="size" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <input type="text" name="currentTools" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+    <form name="church-contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="topic" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

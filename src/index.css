@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --midnight: #101c2e;
+  --midnight-2: #182840;
+  --linen: #f6f2ea;
+  --paper: #ffffff;
+  --gold: #b8862b;
+  --gold-light: #d9a441;
+  --gold-50: #fbf3e2;
+  --royal: #1f4e79;
+  --royal-50: #e8eff6;
+  --slate: #5b6472;
+  --line: #e1dbd0;
+  --success: #1e7a4c;
+  --warning: #b7791f;
+  --danger: #b42318;
+  color-scheme: light;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body { @apply bg-linen text-midnight font-sans antialiased; overflow-x: hidden; }
+
+/* Custom scrollbars: brand gold on linen, never default grey */
+* { scrollbar-width: thin; scrollbar-color: var(--gold) var(--linen); }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--linen); }
+*::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; border: 2px solid var(--linen); }
+*::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+.dark-scroll { scrollbar-color: var(--gold-light) var(--midnight); }
+.dark-scroll::-webkit-scrollbar-track { background: var(--midnight); }
+.dark-scroll::-webkit-scrollbar-thumb { background: var(--gold-light); border-color: var(--midnight); }
+
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+
+/* Typography helpers */
+.display { @apply font-display font-semibold tracking-[-0.01em] leading-[1.02]; }
+.stamp { @apply font-mono text-[11px] uppercase tracking-[0.14em] text-slate; }
+.eyebrow { @apply font-mono text-xs uppercase tracking-[0.18em] text-gold; }
+.lede { @apply text-lg text-slate leading-relaxed; }
+
+/* Stained-glass mesh (brand motif, used sparingly) */
+.mesh {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(184,134,43,0.22), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 15%, rgba(31,78,121,0.30), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 90%, rgba(217,164,65,0.16), transparent 60%),
+    var(--midnight);
+}
+.mesh-light {
+  background:
+    radial-gradient(ellipse 50% 40% at 10% 10%, rgba(184,134,43,0.10), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(31,78,121,0.08), transparent 60%),
+    var(--linen);
+}
+/* Light rays rotating slowly behind hero content */
+.rays::before {
+  content: '';
+  position: absolute; inset: -40%;
+  background: conic-gradient(from 0deg, transparent 0 20deg, rgba(217,164,65,0.07) 22deg 26deg, transparent 28deg 60deg, rgba(255,255,255,0.05) 62deg 66deg, transparent 68deg 130deg, rgba(217,164,65,0.06) 132deg 136deg, transparent 138deg 360deg);
+  animation: rays 90s linear infinite;
+  pointer-events: none;
+}
+/* Fine ruled lines like a hymnal page */
+.ruled { background-image: linear-gradient(to bottom, rgba(16,28,46,0.06) 1px, transparent 1px); background-size: 100% 28px; }
+.ruled-dark { background-image: linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 100% 28px; }
+
+/* Gold underline that draws in */
+.underline-draw { position: relative; display: inline-block; }
+.underline-draw::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0.04em; height: 0.08em;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.underline-draw.is-visible::after { transform: scaleX(1); }
+
+.card { @apply bg-paper border border-line rounded-xl shadow-card min-w-0; }
+.grid > * { min-width: 0; }
+.tap { min-height: 44px; min-width: 44px; }
+/* Comfortable touch area for small text links without changing their look */
+.hit { display: inline-flex; align-items: center; min-height: 44px; }
+.hit-sm { display: inline-flex; align-items: center; min-height: 36px; }
+
+/* Stage pipeline connector */
+.pipe::before { content: ''; position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--line); }
+
+/* Print */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-page { box-shadow: none !important; border: 0 !important; }
+}
+
+/* ---------- Device responsiveness safeguards ---------- */
+/* iOS Safari zooms the page when a focused field is under 16px. Keep fields at 16px on phones and touch devices. */
+@media (max-width: 639px), (pointer: coarse) {
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']),
+  select:not([data-keep-size]),
+  textarea:not([data-keep-size]) { font-size: 16px; }
+}
+/* Mobile browser toolbars change the visible height; use the dynamic viewport where supported. */
+@supports (min-height: 100dvh) {
+  .min-h-screen { min-height: 100dvh; }
+}
+/* Floating assistant never taller than the visible screen */
+.assistant-panel { max-height: calc(100vh - 7rem); max-height: calc(100dvh - 7rem); }
+/* Touch screens cannot hover, so reveal hover-only affordances. */
+@media (hover: none) {
+  .group .touch-reveal { opacity: 1; }
+}
+/* Prevent long words, emails and URLs from forcing horizontal scroll. */
+h1, h2, h3, h4, p, li, dd, blockquote { overflow-wrap: break-word; }
