@@ -13,33 +13,32 @@
       rel="stylesheet"
     />
 
-    <title>ChurchConnect by DataIsData | Church Website, CRM and AI-Powered Operations Platform</title>
-    <meta
-      name="description"
-      content="ChurchConnect brings a modern church website, member portal, membership CRM, giving, ministry operations, facilities and an AI administrative workforce into one connected platform. Built by DataIsData."
-    />
-    <meta name="robots" content="index, follow" />
-
-    <!-- TODO: confirm with Tony: switch SITE_URL to the custom domain once connected in Netlify (also robots.txt, sitemap.xml, src/config/site.ts). -->
-    <link rel="canonical" href="https://churchconnect-dataisdata.netlify.app/" />
+    <!-- Link preview + SEO tags are generated at build time from site.config.json (see vite.config.ts). Do not hard-code the domain here. -->
+    <title>__PAGE_TITLE__</title>
+    <meta name="description" content="__PAGE_DESC__" />
+    <meta name="robots" content="__PAGE_ROBOTS__" />
+    <link rel="canonical" href="__PAGE_URL__" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ChurchConnect by DataIsData" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="ChurchConnect | Modernizing the business of running a church" />
-    <meta
-      property="og:description"
-      content="One connected platform: church website, member portal, membership CRM, giving and finance, ministry operations, facilities, communications and AI agents that prepare the work for your team to approve."
-    />
-    <meta property="og:url" content="https://churchconnect-dataisdata.netlify.app/" />
-    <meta property="og:image" content="https://churchconnect-dataisdata.netlify.app/og-image.png" />
+    <meta property="og:url" content="__PAGE_URL__" />
+    <meta property="og:title" content="__PAGE_OG_TITLE__" />
+    <meta property="og:description" content="__PAGE_OG_DESC__" />
+    <meta property="og:image" content="__PAGE_IMAGE__" />
+    <meta property="og:image:secure_url" content="__PAGE_IMAGE__" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="ChurchConnect by DataIsData: Modernizing the business of running a church." />
+    <meta property="og:image:alt" content="__PAGE_IMAGE_ALT__" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ChurchConnect | Modernizing the business of running a church" />
-    <meta name="twitter:description" content="Church website, CRM, finance, ministries, facilities and AI agents in one connected environment." />
-    <meta name="twitter:image" content="https://churchconnect-dataisdata.netlify.app/og-image.png" />
-
+    <meta name="twitter:title" content="__PAGE_OG_TITLE__" />
+    <meta name="twitter:description" content="__PAGE_OG_DESC__" />
+    <meta name="twitter:image" content="__PAGE_IMAGE__" />
+    <meta name="twitter:image:alt" content="__PAGE_IMAGE_ALT__" />
+    <!-- Netlify's hashed deploy addresses (e.g. 6a1f2c--site.netlify.app) always forward to the main address -->
+    <script>(function(){var c='__SITE_HOST__',h=location.hostname;if(h!==c&&h.slice(-(c.length+2))==='--'+c&&h.indexOf('deploy-preview-')!==0){location.replace('https://'+c+location.pathname+location.search+location.hash)}})()</script>
+  </head>
+  <body>
     <!-- Hidden static forms so Netlify Forms detects them at build time -->
     <form name="pilot-request" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
@@ -60,8 +59,6 @@
       <textarea name="message"></textarea>
       <input type="text" name="bot-field" />
     </form>
-  </head>
-  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

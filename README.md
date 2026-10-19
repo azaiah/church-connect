@@ -41,12 +41,38 @@ Deploy on Netlify: build command `npm run build`, publish `dist` (netlify.toml i
 
 Reset anything with the Reset button in the admin top bar or Settings → Security.
 
+## Public address and link previews
+
+The live address is set in **one place**: `site.config.json` (`"url"`). Currently `https://church-connect-dataisdata.netlify.app`.
+
+At build time (`vite.config.ts`, plugin `site-meta`) it is stamped into:
+
+- every canonical tag and every `og:url` / `og:image` / `twitter:image` tag
+- `robots.txt` and `sitemap.xml` (generated into `dist/`, not kept in `public/`)
+- `site.domain` inside the app
+- the redirect that forwards Netlify's hashed deploy addresses (`abc123--church-connect-dataisdata.netlify.app`) and branch addresses to the main address. Deploy previews (`deploy-preview-N--...`) are left alone so pull requests can still be reviewed.
+
+Each shareable section gets its own page with its own preview card:
+
+| Link | Preview title | Image |
+|---|---|---|
+| `/` | ChurchConnect: Modernizing the business of running a church | `public/og-image.png` |
+| `/church` (and every `/church/...` page) | Grace Harbor Community Church: Live ChurchConnect demo | `public/og-church.png` |
+| `/portal/...` | ChurchConnect Member Portal: Live demo | `og-image.png` |
+| `/admin/...` | ChurchConnect Admin and CRM: Live demo | `og-image.png` |
+| `/privacy`, `/terms` | Policy titles | `og-image.png` |
+
+Preview text and titles live in the `pages` list in `vite.config.ts`. `/portal` and `/admin` are marked `noindex` so search engines skip the demo screens, but they are not blocked in `robots.txt`, so texting or posting those links still shows a preview card.
+
+**Switching to a custom domain later:** add the domain in Netlify, set it as primary, change `url` in `site.config.json`, push. Nothing else needs editing.
+
+**If a preview looks out of date after a change:** iMessage and most apps cache link previews per device or per link. Check new previews with Facebook's Sharing Debugger or LinkedIn's Post Inspector (both re-fetch on demand).
+
 ## Before launch (search for `TODO: confirm with Tony`)
 
-- `src/config/site.ts`: DataIsData email, phone, address, domain
-- `index.html`, `public/robots.txt`, `public/sitemap.xml`: canonical URL once the custom domain is connected
+- `src/config/site.ts`: DataIsData email, phone, address
+- `site.config.json`: switch `url` if a custom domain is connected
 - `src/pages/Privacy.tsx`, `src/pages/Terms.tsx`: final legal text
-- `public/og-image.png`: 1200×630 share card (not yet generated)
 - Pricing in `src/config/site.ts` is the writeup's preliminary pricing, not validated quotes
 
 ## Structure

@@ -7,7 +7,7 @@ export const site = {
   company: 'DataIsData, LLC',
   companyShort: 'DataIsData',
   tagline: 'Modernizing the business of running a church.',
-  domain: 'https://churchconnect-dataisdata.netlify.app', // TODO: confirm with Tony (custom domain; also index.html, robots.txt, sitemap.xml)
+  domain: __SITE_URL__, // Set in site.config.json only (drives link previews, canonical tags, sitemap, robots.txt)
   email: 'hello@dataisdata.com', // TODO: confirm with Tony
   phone: '(804) 555-0140', // TODO: confirm with Tony
   phoneHref: 'tel:+18045550140', // TODO: confirm with Tony

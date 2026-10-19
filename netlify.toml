@@ -6,6 +6,49 @@
 [functions]
   node_bundler = "esbuild"
 
+# Each shareable section has its own page so texted/posted links show the right preview card.
+# All of them load the same app; deep links (e.g. /church/give) keep their section's preview.
+[[redirects]]
+  from = "/church"
+  to = "/church.html"
+  status = 200
+
+[[redirects]]
+  from = "/church/*"
+  to = "/church.html"
+  status = 200
+
+[[redirects]]
+  from = "/portal"
+  to = "/portal.html"
+  status = 200
+
+[[redirects]]
+  from = "/portal/*"
+  to = "/portal.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+# Everything else: single-page app
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -15,3 +58,9 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/og-*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Access-Control-Allow-Origin = "*"
